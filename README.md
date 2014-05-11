@@ -12,8 +12,10 @@ This uses fixed width between elements.
 </div>
 
 Initialize :
+========
 
 masonry.item = "item";
+
 masonry.implement();
 
 The default values will be updated shortly...
