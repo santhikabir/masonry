@@ -1,7 +1,5 @@
-
 /*
     -- this is for sorting the elements into masonry format
-	-- property of hicdil.com
 	-- written by santhi kabir
     -- contact santhikabir@gmail.com, https://www.facebook.com/santhi.kabir
 */
@@ -72,7 +70,7 @@ var masonry = {
 	    if(! this.checkParameters() ){
 		    return false;
 		};
-		
+				
 		$docWidth = $(document).width();
         
 		// set the columns
@@ -83,7 +81,7 @@ var masonry = {
 		
 		$down = this.width + this.marg;
 		
-		$cols = Math.round( $top / $down );
+		$cols = Math.floor( $top / $down );
 		
 		if($cols < 2 ){
 		    this.cols = 2;
@@ -97,7 +95,9 @@ var masonry = {
 		var cols_array = new Array;
 		for(var i = 0; i < this.cols; i++){
 		    cols_array.push(this.topPadding);
+			console.log(cols_array[i]);
 		}
+		
 		
 		// using jquery each function
 		var row_id = "";
@@ -106,25 +106,20 @@ var masonry = {
 		$left = this.leftPadding;
 		$Vmarg = this.Vmarg;
 		
-		alert($cols);
-		alert($ab);
-		alert($left);
-		
 		$("." + this.item).each(function(i){
-		    
+		
 		    row_id = i % $cols;
 			$top = cols_array[row_id];
-			$lefta = ($ab) * (row_id - 1) + $left;
+			$lefta = ($ab) * (row_id) + $left;
 			
-			this.setAttribute("style", "top: " + $top + ";left:" + $lefta);
+			//this.setAttribute("style", "position:absolute; top: " + $top + "px;left:" + $lefta + "px;");
+			$(this).css("position", "absolute");
+			$(this).css("top", $top);
+			$(this).css("left", $lefta);
 			cols_array[row_id] += $(this).height() + $Vmarg;
 			
-			alert($(this).height());
-			alert(cols_array[row_id]);
 		});
 		
 		return true;
 	}
 };
-
-
